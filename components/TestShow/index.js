@@ -17,7 +17,7 @@ const pageincrease = (testId, testPageAmount, whatWeDo) =>{
   }  
 }
 
-export default function Index({testId}) {
+export default function Index({testId, testQuestionNumber}) {
 
   const [testPageAmount, setTestPageAmount] = useState(3) //toplam test sayısı
   const [startCheck, setstartCheck] = useState(true);
@@ -39,7 +39,7 @@ export default function Index({testId}) {
       </div>
       :
       <div className='flex justify-center items-center flex-col mb-4'>      
-        <TestSovle testId={testId} startCheck={startCheck} setstartCheck={setstartCheck} />                 
+        <TestSovle testId={testId} testQuestionNumber={testQuestionNumber} startCheck={startCheck} setstartCheck={setstartCheck} />                 
       </div>
       
     }
