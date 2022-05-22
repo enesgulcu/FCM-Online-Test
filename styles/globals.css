@@ -28,11 +28,10 @@
   lg:m-8
   lg:p-5
   font-medium 
-  border-gray-400
-  lg:text-lg 
+  border-gray-600
+  lg:text-lg
+  lg:hover:scale-110 
   text-black 
-  hover:border-gray-600 
-  hover:scale-110 
   ease-in-out 
   duration-200
 }
@@ -40,13 +39,27 @@
 
 .testShowButtonText{
   @apply 
-  text-[10px]
-  md:text-[15px]
+  p-1
+  text-[15px]
   lg:text-[20px]
   select-none
 }
 
-
+.resultOptions{
+  @apply 
+  border-2
+  bg-white 
+  rounded-full  
+  font-medium 
+  border-gray-600
+  text-black 
+  ease-in-out 
+  duration-200
+  gap-1
+  p-2
+  w-11
+  m-1
+}
 
 
 

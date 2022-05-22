@@ -16,9 +16,9 @@ export default function Index({testId,startCheck,setstartCheck}) {
   const testQuestionNumber = testQuestionAmount[testId-1]
 
   const [testQuestionAnswer, setTestQuestionAnswer] = useState([
-    {test:1,Answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B"]},
-    {test:2,Answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A"]},
-    {test:3,Answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D"]},
+    {test:1,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B"]},
+    {test:2,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A"]},
+    {test:3,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D"]},
   ])
 
   
@@ -35,14 +35,17 @@ export default function Index({testId,startCheck,setstartCheck}) {
        setStudentAnswer([...b,{
         id:questionCounter,
         answer:selectAnswer,
-      }]);   
+      }]);  
       }
       else{
         setStudentAnswer([...studentAnswer,{
           id:questionCounter,
           answer:selectAnswer,
         }]); 
+        // after click wait some time and go next question
+        setTimeout(()=>setQuestionCounter(questionCounter+1), 500); 
        }
+       
     }
   }, [selectAnswer]);
   
