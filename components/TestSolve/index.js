@@ -7,7 +7,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
 
   const [selectAnswer, setSelectAnswer] = useState("");
   const [studentAnswer, setStudentAnswer] = useState([]);
-  const [questionCounter, setQuestionCounter] = useState(1);
+  const [questionCounter, setQuestionCounter] = useState(30);
   const [checkAnswer, setCheckAnswer] = useState("");
 
    const[answerButton, setAnswerButton] = useState(false);
@@ -16,12 +16,14 @@ export default function Index({testId,startCheck,setstartCheck}) {
   const testQuestionNumber = testQuestionAmount[testId-1]
 
   const [testQuestionAnswer, setTestQuestionAnswer] = useState([
+    //30 soru
     {test:1,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B"]},
+    //29 soru
     {test:2,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A"]},
+    //28 soru
     {test:3,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D"]},
   ])
 
-  
   useEffect(() => {
     if(selectAnswer!= ""){
       const a = studentAnswer.filter((answer)=>{
@@ -43,7 +45,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
           answer:selectAnswer,
         }]); 
         // after click wait some time and go next question
-        setTimeout(()=>setQuestionCounter(questionCounter+1), 500); 
+        setTimeout(()=>setQuestionCounter(questionCounter+1), 300); 
        }
        
     }
@@ -91,8 +93,23 @@ export default function Index({testId,startCheck,setstartCheck}) {
                 <button onClick={()=>setSelectAnswer("D")} className={selectAnswer === "D" ? "solvebuttonafterclick" : "solvebuttonbefore"}>D</button> 
               </div>              
             </div>
-            : <div onClick={()=>setAnswerButton(!answerButton)} className='p-4 w-60 text-center mx-auto bg-blue-400 rounded m-4 text-white font-medium'> <button>Check The Answers</button>
+              :<div> 
+              <div onClick={()=>setAnswerButton(!answerButton)} className='cursor-pointer hover:scale-110 ease-in-out duration-300 p-4 w-60 text-center mx-auto bg-blue-400 rounded m-4 text-white font-medium'>
+              <button>Check The Answers</button>
+            </div> 
+            {answerButton && <div className='flex justify-center items-center gap-x-4 mb-2'>
+                <div className='flex justify-center items-center gap-x-2'>
+                  <div className='p-2 bg-black border border-black rounded-full w-2'></div>
+                  <h5>Student Answer</h5>
+                </div>
+                <div className='flex justify-center items-center gap-x-2'>
+                  <div className='p-2 bg-green-500 border border-black rounded-full w-2'></div>
+                  <h5>Correct Answer</h5>
+                </div>
+              </div>
+              }
             </div>
+            
             }
             {answerButton &&
               <TestControl testId={testId} studentAnswer={studentAnswer} testQuestionAnswer={testQuestionAnswer} />

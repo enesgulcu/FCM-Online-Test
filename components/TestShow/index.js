@@ -25,7 +25,7 @@ export default function Index({testId}) {
   return (
     <div>
       {startCheck ?
-      <div className='flex justify-center items-center flex-col mb-4'>
+      <div className='flex justify-center items-center flex-col mb-4 noselect'>
       <h2 className='font-medium text-lg p-2 border bg-red-400 rounded-xl mt-2 text-white'>Test {testId}</h2>
         <div className='bg-[#d5edff] rounded-xl border-4 border-red-400 inline-block mx-auto mt-2 relative'>
           <ul className='flex justify-between p-4 gap-x-2'>
