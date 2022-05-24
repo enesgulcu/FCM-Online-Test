@@ -39,7 +39,9 @@ export default function Index({testId}) {
           <Link href={`/test_page/${pageincrease(testId,testPageAmount,+1)}`}><li className=' testShowButton'><a className='testShowButtonText'><BsFillArrowRightCircleFill size={30}/></a></li></Link>  
 
           </ul>
-          <img className='max-h-screen' src={`/quiz/test-${testId}/test-${testId}-1.jpg`} alt={"Test:" + testId}/>        
+          {testId != undefined &&
+          <img className='max-h-screen' src={`/quiz/test-${testId}/test-${testId}-1.jpg`} alt={"Test:" + testId}/>   
+          }     
         </div>                
       </div>
       :

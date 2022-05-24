@@ -7,7 +7,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
 
   const [selectAnswer, setSelectAnswer] = useState("");
   const [studentAnswer, setStudentAnswer] = useState([]);
-  const [questionCounter, setQuestionCounter] = useState(30);
+  const [questionCounter, setQuestionCounter] = useState(1);
   const [checkAnswer, setCheckAnswer] = useState("");
 
    const[answerButton, setAnswerButton] = useState(false);
@@ -24,28 +24,41 @@ export default function Index({testId,startCheck,setstartCheck}) {
     {test:3,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D"]},
   ])
 
+  //setStudentAnswer
+  
+
+  useEffect(() => {
+    
+    let fakeData = [];
+    for (let i = 1; i <= testQuestionNumber ; i++) {
+    fakeData = [...fakeData,{id: i,answer: 'X'}];
+    }
+  setStudentAnswer(fakeData);
+  }, []);
+
+
   useEffect(() => {
     if(selectAnswer!= ""){
       const a = studentAnswer.filter((answer)=>{
+        
         return answer.id === questionCounter
       })
       const b = studentAnswer.filter((answer)=>{
         return answer.id !== questionCounter
+        
       })
 
       if(a.length !== 0){
        setStudentAnswer([...b,{
         id:questionCounter,
         answer:selectAnswer,
-      }]);  
+      }]); 
       }
       else{
         setStudentAnswer([...studentAnswer,{
           id:questionCounter,
           answer:selectAnswer,
         }]); 
-        // after click wait some time and go next question
-        setTimeout(()=>setQuestionCounter(questionCounter+1), 300); 
        }
        
     }
@@ -65,6 +78,10 @@ export default function Index({testId,startCheck,setstartCheck}) {
     
   }, [questionCounter])
 
+  const selectedOption = (value) =>{
+    setSelectAnswer(value);
+    setTimeout(()=>setQuestionCounter(questionCounter+1), 300);
+  }
 
   return (
     <>
@@ -87,10 +104,10 @@ export default function Index({testId,startCheck,setstartCheck}) {
 
               <img className='noselect w-[70%] h-auto rounded-xl border-2 border-blue-200' src={`/quiz/test-${testId}/test-image/${testId}-${questionCounter}.jpg`} alt=''/>             
               <div className="w-full flex justify-center items-center noselect">
-                <button onClick={()=>setSelectAnswer("A")} className={selectAnswer === "A" ? "solvebuttonafterclick" : "solvebuttonbefore"}>A</button>
-                <button onClick={()=>setSelectAnswer("B")} className={selectAnswer === "B" ? "solvebuttonafterclick" : "solvebuttonbefore"}>B</button>
-                <button onClick={()=>setSelectAnswer("C")} className={selectAnswer === "C" ? "solvebuttonafterclick" : "solvebuttonbefore"}>C</button>  
-                <button onClick={()=>setSelectAnswer("D")} className={selectAnswer === "D" ? "solvebuttonafterclick" : "solvebuttonbefore"}>D</button> 
+                <button onClick={()=>selectedOption("A")} className={selectAnswer === "A" ? "solvebuttonafterclick" : "solvebuttonbefore"}>A</button>
+                <button onClick={()=>selectedOption("B")} className={selectAnswer === "B" ? "solvebuttonafterclick" : "solvebuttonbefore"}>B</button>
+                <button onClick={()=>selectedOption("C")} className={selectAnswer === "C" ? "solvebuttonafterclick" : "solvebuttonbefore"}>C</button>  
+                <button onClick={()=>selectedOption("D")} className={selectAnswer === "D" ? "solvebuttonafterclick" : "solvebuttonbefore"}>D</button> 
               </div>              
             </div>
               :<div> 
@@ -112,7 +129,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
             
             }
             {answerButton &&
-              <TestControl testId={testId} studentAnswer={studentAnswer} testQuestionAnswer={testQuestionAnswer} />
+              <TestControl testId={testId} studentAnswer={studentAnswer} testQuestionAnswer={testQuestionAnswer} testQuestionNumber={testQuestionNumber} />
             }  
           </div>  
       </div>
