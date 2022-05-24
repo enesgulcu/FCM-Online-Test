@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { FiCheckCircle , FiX, FiMinus} from "react-icons/fi";
+import TestSovle from '../TestSolve/index'
 
 export default function Index({testId, studentAnswer, testQuestionAnswer, testQuestionNumber}) {
 
@@ -11,6 +12,8 @@ export default function Index({testId, studentAnswer, testQuestionAnswer, testQu
 
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [blankAnswer, setBlankAnswer] = useState(0);
+  const [ischecktrue, setIschecktrue] = useState(false);
+  const [selectresultbutton, setSelectresultbutton] = useState(0);
 
 
 useEffect(() => {
@@ -26,12 +29,17 @@ const bul = () =>{
     e.test === parseInt(testId) &&
     setCorrectAnswer(e.answer.filter((j, index)=>studentAnswer[index].answer == j)))
 }
+  
+  const resultCheckQuestion = (value)=>{
 
+    setIschecktrue(!ischecktrue);
+    setSelectresultbutton(value);
 
+  }
   
   return (
     <div className=' mx-auto text-center noselect'>
-    <div className='flex justify-center gap-x-2 p-4 font-medium text-white items-center '>
+    <div className='noselect flex justify-center md:gap-x-2 p-4 font-medium text-white items-center '>
 
       <div className='bg-green-500 p-1 flex justify-center items-center gap-x-2 px-2 rounded-full border-2 border-gray-600'>
         <FiCheckCircle size={20} className='text-white' />
@@ -55,7 +63,8 @@ const bul = () =>{
           e.test === parseInt(testId) &&
             e.answer.map((j, index)=>              
               <div key={index}>
-              <li className="border-b m-2 p-2 flex justify-center items-center mx-auto">
+              <li className="border-b m-2 p-2 flex-col justify-center items-center mx-auto">
+              <div className="p-2 flex justify-center items-center mx-auto">
                 <div>
                       {studentAnswer[index].answer == 'X' ? (
                         
@@ -85,11 +94,21 @@ const bul = () =>{
                   <div className={`resultOptions ${j==="C" && "bg-green-500"} 
                   ${studentAnswer[index].answer == "C" && "bg-black text-white"}`}>C</div>
                   <div className={`resultOptions ${j==="D" && "bg-green-500"} 
-                  ${studentAnswer[index].answer == "D" && "bg-black text-white"}`}>D</div>                
-                  <div>
+                  ${studentAnswer[index].answer == "D" && "bg-black text-white"}`}>D</div>  
 
-                    <button className='bg-white font-medium mx-2 px-4 py-2 rounded-xl border-2 hover:bg-gray-600 hover:text-white border-gray-600 hover:scale-110 ease-in-out duration-200'>Check
-                    </button>
+                  <button value={index} onClick={(e)=>resultCheckQuestion(e.target.value)} className='bg-white font-medium mx-2 px-4 py-2 rounded-xl border-2 hover:bg-gray-600 hover:text-white border-gray-600 hover:scale-110 ease-in-out duration-200'>Check
+                  </button>  
+                  </div>
+                  <div>                  
+                    {ischecktrue && selectresultbutton == index &&
+                    <div className='relative noselect'>
+                      <div className=' container'>
+                      <div className='rounded-xl flex justify-center flex-col items-center container'>
+                        <img className='rounded-xl noselect w-[70%] h-auto rounded-xl border-2 border-gray-600 mb-4' src={`/quiz/test-${parseInt(testId)}/test-image/${parseInt(testId)}-${index+1}.jpg`} alt=''/>                             
+                        </div>
+                      </div>
+                    </div>
+                  }
                   </div>
                 </li>
                 </div>

@@ -87,10 +87,10 @@ export default function Index({testId,startCheck,setstartCheck}) {
     <>
     <div className='flex justify-center item-center mx-auto flex-col'>
       <div onClick={()=>setAnswerButton(false)} className='flex gap-5 justify-between'>
-          <h2 className='hover:scale-110 ease-in-out duration-300 noselect font-medium text-lg p-2 border bg-red-400 rounded-xl mt-2 cursor-pointer text-white'>Test {testId}</h2>
+          <h2 className='hover:scale-110 ease-in-out duration-300 noselect font-medium text-lg p-2 border bg-red-400 rounded-xl mt-2  text-white'>Test {testId}</h2>
           <h2 onClick={()=>setstartCheck(true)} className='hover:scale-110 ease-in-out duration-300 noselect font-medium text-lg p-2 border bg-indigo-600 rounded-xl mt-2 cursor-pointer text-white'><a>Go Back</a></h2>
       </div>
-          <div className='bg-[#d5edff] min-w-[350px] md:min-w-[500px] lg:min-w-[700px] rounded-xl border-4 border-red-400 inline-block mx-auto mt-2 relative'>
+          <div className='noselect bg-[#d5edff] min-w-[350px] md:min-w-[500px] lg:min-w-[700px] rounded-xl border-4 border-red-400 inline-block mx-auto mt-2 relative'>
             <ul onClick={()=>setAnswerButton(false)} className='flex justify-around p-4 gap-x-2'>
             {questionCounter > 1  &&
             <li onClick={()=>setQuestionCounter(questionCounter === 1 ? questionCounter : questionCounter-1)} className='testShowButton'><a className='testShowButtonText noselect'><BsFillArrowLeftCircleFill size={35}/></a></li>

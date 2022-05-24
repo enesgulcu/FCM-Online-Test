@@ -18,8 +18,8 @@ const pageincrease = (testId, testPageAmount, whatWeDo) =>{
 }
 
 export default function Index({testId}) {
-
-  const [testPageAmount, setTestPageAmount] = useState(3) //toplam test sayısı
+  console.log(testId)
+  const [testPageAmount, setTestPageAmount] = useState(2) //toplam test sayısı
   const [startCheck, setstartCheck] = useState(true);
   
   return (
