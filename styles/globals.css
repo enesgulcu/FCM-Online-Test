@@ -73,9 +73,9 @@
   w-[50px]
   lg:w-[70px]
   lg:p-5
-  m-2 
-  md:m-4 
-  lg:m-8
+  m-2
+  lg:m-4
+  lg:p-5
   lg:text-lg
   font-medium 
   text-white 
