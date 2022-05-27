@@ -5,11 +5,11 @@ import Link from 'next/link'
 
 export default function Index() {
 
-  const [imageLink, setImageLink] = useState(["question circle-1","question circle-2","question circle-3","question circle-4","question circle-5","question circle-6","question circle-7","question circle-8","question circle-9","question circle-10","question circle-11","question circle-12"])
+  const [imageLink, setImageLink] = useState(["question circle-0","question circle-1","question circle-2","question circle-3","question circle-4","question circle-5","question circle-6"]) // Inside unid
   
   return (
-    <div className='noselect mx-auto container p-6 bg-[#d5edff] rounded-xl shadow-lg border-4 border-red-400'>
-      <ul className='gap-5 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12'> 
+    <div className='m-4 noselect mx-auto container p-2 md:p-4 bg-[#d5edff] rounded-xl shadow-lg border-4 border-red-400'>
+      <ul className='gap-5 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-7'> 
         {            
           imageLink.map((icon, index)=>{
             index = index+1;

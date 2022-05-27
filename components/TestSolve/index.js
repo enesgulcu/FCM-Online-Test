@@ -4,24 +4,25 @@ import TestControl from '../TestControl/index'
 
 import { BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill } from "react-icons/bs";
 export default function Index({testId,startCheck,setstartCheck}) {
-
+  console.log(testId);
   const [selectAnswer, setSelectAnswer] = useState("");
   const [studentAnswer, setStudentAnswer] = useState([]);
-  const [questionCounter, setQuestionCounter] = useState(1);
+  const [questionCounter, setQuestionCounter] = useState(1); //kaçıncı sorudan başlaaycağını belirler
   const [checkAnswer, setCheckAnswer] = useState("");
 
    const[answerButton, setAnswerButton] = useState(false);
   
-  const [testQuestionAmount, setTestQuestionAmount] = useState([30,29,28,27,26,25]);
+  const [testQuestionAmount, setTestQuestionAmount] = useState([10,10,10,10,10,10,10]); //testlerdeki soru sayısı
   const testQuestionNumber = testQuestionAmount[testId-1]
 
   const [testQuestionAnswer, setTestQuestionAnswer] = useState([
-    //30 soru
-    {test:1,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B"]},
-    //29 soru
-    {test:2,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A"]},
-    //28 soru
-    {test:3,answer:["A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D","A","B","C","B","D","A","C","B","A","C","C","D"]},
+    {test:1,answer:["C","A","D","B","C","B","D","C","B","D"]},
+    {test:2,answer:["A","D","B","A","C","B","D","A","C","D"]},
+    {test:3,answer:["A","D","C","C","A","B","D","A","C","B"]},
+    {test:4,answer:["B","C","D","B","C","D","C","D","A","B"]},
+    {test:5,answer:["A","B","C","D","A","B","B","C","B","D"]},
+    {test:6,answer:["B","C","D","D","A","D","A","D","C","D"]},
+    {test:7,answer:["A","B","C","A","C","A","D","A","B","C"]},
   ])
 
   //setStudentAnswer
@@ -87,10 +88,9 @@ export default function Index({testId,startCheck,setstartCheck}) {
     <>
     <div className='flex justify-center item-center mx-auto flex-col'>
       <div onClick={()=>setAnswerButton(false)} className='flex gap-5 justify-between'>
-          <h2 className='hover:scale-110 ease-in-out duration-300 noselect font-medium text-lg p-2 border bg-red-400 rounded-xl mt-2  text-white'>Test {testId}</h2>
           <h2 onClick={()=>setstartCheck(true)} className='hover:scale-110 ease-in-out duration-300 noselect font-medium text-lg p-2 border bg-indigo-600 rounded-xl mt-2 cursor-pointer text-white'><a>Go Back</a></h2>
       </div>
-          <div className='noselect bg-[#d5edff] min-w-[350px] md:min-w-[500px] lg:min-w-[700px] rounded-xl border-4 border-red-400 inline-block mx-auto mt-2 relative'>
+          <div className='noselect bg-[#d5edff] min-w-[290px] p-2 rounded-xl border-4 border-red-400 inline-block mx-auto mt-2 relative'>
             <ul onClick={()=>setAnswerButton(false)} className='flex justify-around p-4 gap-x-2'>
             {questionCounter > 1  &&
             <li onClick={()=>setQuestionCounter(questionCounter === 1 ? questionCounter : questionCounter-1)} className='testShowButton'><a className='testShowButtonText noselect'><BsFillArrowLeftCircleFill size={35}/></a></li>
@@ -102,7 +102,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
             {testQuestionNumber>= questionCounter ?
             <div className=' bg-[#d5edff] flex justify-center flex-col items-center container'>
 
-              <img className='noselect w-[70%] h-auto rounded-xl border-2 border-blue-200' src={`/quiz/test-${testId}/test-image/${testId}-${questionCounter}.jpg`} alt=''/>             
+              <img className='noselect m-2  h-auto rounded-xl border-2 border-blue-200' src={`/quiz/test-${testId}/test-image/${testId}-${questionCounter}.jpg`} alt=''/>             
               <div className="w-full flex justify-center items-center noselect">
                 <button onClick={()=>selectedOption("A")} className={selectAnswer === "A" ? "solvebuttonafterclick" : "solvebuttonbefore"}>A</button>
                 <button onClick={()=>selectedOption("B")} className={selectAnswer === "B" ? "solvebuttonafterclick" : "solvebuttonbefore"}>B</button>
