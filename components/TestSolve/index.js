@@ -4,7 +4,6 @@ import TestControl from '../TestControl/index'
 
 import { BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill } from "react-icons/bs";
 export default function Index({testId,startCheck,setstartCheck}) {
-  console.log(testId);
   const [selectAnswer, setSelectAnswer] = useState("");
   const [studentAnswer, setStudentAnswer] = useState([]);
   const [questionCounter, setQuestionCounter] = useState(1); //kaçıncı sorudan başlaaycağını belirler
@@ -102,7 +101,7 @@ export default function Index({testId,startCheck,setstartCheck}) {
             {testQuestionNumber>= questionCounter ?
             <div className=' bg-[#d5edff] flex justify-center flex-col items-center container'>
 
-              <img className='noselect m-2  h-auto rounded-xl border-2 border-blue-200' src={`/quiz/test-${testId}/test-image/${testId}-${questionCounter}.jpg`} alt=''/>             
+              <img className='noselect m-2 max-h-screen  h-auto rounded-xl border-2 border-blue-200' src={`/quiz/test-${testId}/test-image/${testId}-${questionCounter}.jpg`} alt=''/>             
               <div className="w-full flex justify-center items-center noselect">
                 <button onClick={()=>selectedOption("A")} className={selectAnswer === "A" ? "solvebuttonafterclick" : "solvebuttonbefore"}>A</button>
                 <button onClick={()=>selectedOption("B")} className={selectAnswer === "B" ? "solvebuttonafterclick" : "solvebuttonbefore"}>B</button>
